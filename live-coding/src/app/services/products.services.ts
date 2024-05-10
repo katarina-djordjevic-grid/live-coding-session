@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IState } from '../store/product.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsApiService {
-  constructor() {}
+  constructor() { }
 
-  getData(): Observable<IState> {
-    return of({
-      products: [
+  getData(): Observable<any> {
+    return of(
+      [
         {
           id: 1,
           name: 'iPhone',
@@ -20,8 +19,7 @@ export class ProductsApiService {
           id: 2,
           name: 'iPad',
           price: 200,
-        },
-      ],
-    });
+        }
+      ]);
   }
 }

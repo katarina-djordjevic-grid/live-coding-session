@@ -1,6 +1,6 @@
 Products:
-<ul>
-  <li *ngFor="let product of data">
+<ul *ngIf="products">
+  <li *ngFor="let product of products">
     <p>{{ product.name }}</p>
     <p>{{ product.price }}</p>
     <button>Adjust product</button>

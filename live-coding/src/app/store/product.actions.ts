@@ -1,6 +1,8 @@
 import { createAction, props } from '@ngrx/store';
-import { IProduct } from './product.interface';
+import { IProduct } from './product.reducer';
 
-export const addProducts = createAction('[Products Page] add products', props<{product: IProduct}>());
-export const adjustProduct = createAction('[Products Page] adjust products', props<{product: IProduct}>());
-export const deleteProduct = createAction('[Products Page] delete products', props<{productId: number}>());
+
+export const loadProductsFromAPI = createAction('[Product] Load products from API', props<{products: IProduct[]}>());
+// add product
+// adjust product
+// delete product

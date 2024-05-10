@@ -1,6 +1,16 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { IState } from "./product.interface";
-import { addProducts } from "./product.actions";
+import { loadProductsFromAPI } from "./product.actions";
+
+export interface IProduct {
+    id: number;
+    price: number;
+    name: string;
+}
+
+export interface IState {
+    products: IProduct[];
+    errors?: any;
+}
 
 const initialState: IState = {
     products: [],
@@ -9,22 +19,14 @@ const initialState: IState = {
 
 const productsReducer = createReducer(
     initialState,
-    on(addProducts, (state: any, product: any) => {
-        const productId = product.id ? product.id : Math.random();
-        const newProducts = state.products.push({
-            ...product,
-            id: productId
-        })
+    on(loadProductsFromAPI, (state: any, action: any) => {
         return {
             ...state,
-            products: state.products
+            products: action.products
         }
-    }),
-    // on(adjustProduct, (state: IState, product: IProduct) => {
-        
-    // }),
-    // on(deleteProduct)
+    })
 )
-export function reducer(state: any, action: Action) {
+export function reducer(state: IState, action: Action) {
     return productsReducer(state, action);
 }
+export const shopFeatureKey = 'shop';

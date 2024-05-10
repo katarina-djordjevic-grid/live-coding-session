@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StoreModule } from '@ngrx/store';
-import * as fromProductsReducers from './store/product.reducer';
+import { Store, StoreModule } from '@ngrx/store';
+import * as fromShop from './store/product.reducer';
 import { ProductsModule } from './products/products.module';
 @NgModule({
   declarations: [
@@ -14,9 +14,11 @@ import { ProductsModule } from './products/products.module';
     BrowserModule,
     AppRoutingModule,
     ProductsModule,
-    StoreModule.forRoot({
-      products : fromProductsReducers.reducer
-    })
+    StoreModule.forRoot({}),
+    StoreModule.forFeature(
+      fromShop.shopFeatureKey,
+      fromShop.reducer
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
